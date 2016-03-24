@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2f5072">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+    <title>移动平台_BBS</title>
+    <link rel="stylesheet" type="text/css" href="www/css/style.css">
+    <script src="www/js/jquery-2.1.3.min.js"></script>
+    <script>
+        //
+        (function (doc, win) {
+         var docEl = doc.documentElement,
+         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+         recalc = function () {
+         var clientWidth = docEl.clientWidth;
+         if (!clientWidth) return;
+         docEl.style.fontSize = 20 * (clientWidth / 750) + 'px';
+         };
+         if (!doc.addEventListener) return;
+         win.addEventListener(resizeEvt, recalc, false);
+         doc.addEventListener('DOMContentLoaded', recalc, false);
+         })(document, window);
+        </script>
+    <script>
+        document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);
+        var bridge;
+        
+        function jump()
+        {
+            var body = $("body, html");
+            var top = document.getElementById('replyBox').offsetTop; // Get position of the body
+            if(top!=0)
+            {
+                body.animate({scrollTop :top}, '500',function(){});
+            }
+        }
+    
+    function clickReplyBtnEvent1(e) {
+        bridge.callHandler('clickReplyBtnEvent', {'pid':$(e).attr('pid')}, function(response) {
+                           });
+    }
+    function clickReplyBtnEvent(e) {
+        bridge.callHandler('clickReplyBtnEvent', {'pid':e.attr('pid')}, function(response) {
+                           });
+    }
+    function clickReportBtnEvent1(e) {
+        bridge.callHandler('clickReportBtnEvent', {'pid':$(e).attr('pid')}, function(response) {
+                           });
+    }
+    function clickReportBtnEvent(e) {
+        bridge.callHandler('clickReportBtnEvent', {'pid':e.attr('pid')}, function(response) {
+                           });
+    }
+    function resetBindComments() {
+        //删除引用的换行
+        $(".replyItems .reply_wrap br,.replyItems .quote br").remove();
+        $(".p-content img").unbind("click");
+        $(".p-content img").bind("click",function(){
+                               clickImgEvent($(this));
+                               });
+                               
+    }
+    
+    function removeQuotesBr() {
+        //删除引用的换行
+       // $(".replyItems .reply_wrap br,.replyItems .quote br").remove();
+    }
+    
+    function getShareImageURL()
+    {
+        var srcList = document.querySelectorAll('.p-content img');
+        var firstImg = srcList[0].src;
+        for(var i=0;i<srcList.length;i++) {
+            var myVar = srcList[i].src
+            if(myVar.indexOf("bigapp:getsmile")<0) {
+               return myVar;
+            }
+        }
+        return firstImg;
+    }
+
+    
+    function clickImgEvent(e) {
+        //获取到所有图片的地址
+        var selectdSRC = e.attr('src');
+        if(selectdSRC.indexOf("bigapp:getsmile")>=0)
+        {
+            return;
+        }
+        var srcList = [];
+        $(".p-content img").each(function(){
+                                 var src = $(this).attr("src");
+                                 if(src.indexOf("bigapp:getsmile",0)<0)
+                                 {
+                                 srcList.push(src);
+                                 bridge.callHandler('clickImgEvent', {'imgArray':srcList, 'selectedImg':e.attr('src')},  function(response) {
+                                                    });
+                                 }
+                                 //srcList.push($(this).attr("src"));
+                               });
+    }
+    function clickSupportBtnEvent(e) {
+        //点赞回帖的时候返回pid
+        bridge.callHandler('clickSupportBtnEvent', {'pid':$(e).attr('pid')},  function(response) {
+                           });
+    }
+    function clickSupportThreadBtnEvent(e) {
+        //点赞主题的时候返回pid
+        bridge.callHandler('clickSupportThreadBtnEvent', {'pid':$(e).attr('pid')},  function(response) {
+                           });
+    }
+    
+    function clickAvatarEvent(e) {
+        bridge.callHandler('clickAvatarEvent', {'uid':e.attr('uid')},  function(response) {
+                           });
+    }
+    
+    function clickAvatarEvent1(e) {
+        bridge.callHandler('clickAvatarEvent', {'uid':$(e).attr('uid')},  function(response) {
+                           });
+    }
+    //只点亮主题点赞图标
+    function hightlightedThreadSupportOnly(pid) {
+        var o = $("#"+pid)
+        o.addClass('liked');
+    }
+    //只点亮回帖点赞图标
+    function hightlightedPostSupportOnly(pid) {
+        var e = document.getElementById(pid);
+        var o = $("#"+pid)
+        o.addClass('liked');
+    }
+    
+    //点亮主题点赞图标
+    function hightlightedThreadSupport(pid) {
+        var o = $("#"+pid)
+        o.addClass('liked');
+        o.find('span').html(parseInt(o.find('span').html())+1);
+    }
+    //点亮回帖点赞图标
+    function hightlightedPostSupport(pid) {
+        var e = document.getElementById(pid);
+        var o = $("#"+pid)
+        o.addClass('liked');
+        o.find('span').html(parseInt(o.find('span').html())+1);
+    }
+    
+    function onBridgeReady(event) {
+        bridge = event.bridge;
+        var uniqueId = 1;
+        bridge.init(function(message, responseCallback) {
+                    var data = { 'Javascript Responds':'Wee!' };
+                    responseCallback(data);
+                    });
+                    // 交互描述 by Goofy
+                    // 点赞功能交互
+                    // 点击变色，如果已经变色不做操作
+                    // 默认给数字+1
+                    $('.replyBox .like').bind("click",function(){
+                                              if(!$(this).hasClass('liked')){
+                                              //$(this).addClass('liked');
+                                              //$(this).find('span').html(parseInt($(this).find('span').html())+1);
+                                              bridge.callHandler('clickSupportBtnEvent', {'pid':$(this).attr('pid')},  function(response) {
+                                                                 });
+                                              }else{
+                                              }
+                                              });
+                                              $('.bbsBox .like').bind("click",function(){
+                                                                      if(!$(this).hasClass('liked')){
+                                                                      // $(this).addClass('liked');
+                                                                      //$(this).find('span').html(parseInt($(this).find('span').html())+1);
+                                                                      bridge.callHandler('clickSupportThreadBtnEvent', {'pid':$(this).attr('pid')},  function(response) {
+                                                                                         });
+                                                                      } else {
+                                                                      }
+                                                                      });
+                                                                      
+                                                                      
+                                                                      $(".btnReply").bind("click",function(){
+                                                                                          clickReplyBtnEvent($(this));
+                                                                                          });
+                                                                                          
+                                                                                          $(".btnReport").bind("click",function(){
+                                                                                                              clickReportBtnEvent($(this));
+                                                                                                              });
+                                                                                          $(".photo").bind("click",function(){
+                                                                                                            clickAvatarEvent($(this));
+                                                                                                            });
+                                                                                                            
+                                                                                                            $(".p-content img").bind("click",function(){
+                                                                                                                                   clickImgEvent($(this));
+                                                                                                                                   });
+                                                                                                                                   
+    }
+    </script>
+</head>
+<body>
+
+<!-- main start -->
+<section id="main">
+
+    <section class="bbsBox card">
+        <div class="user-info">
+            <div class="photo" style="background-image:url({{avatar}});" uid= {{authorID}}></div>
+
+<!--            <div class="photo"><img class="avatar" src = {{avatar}} alt="" uid= {{authorID}}></div>-->
+            <div class="info-detail">
+                <p class="name"><span>{{author}}</span><em class="tags tags-lz">楼主</em></p>
+                <p class="date">{{dateline}}</p>
+            </div>
+        </div>
+        <article>
+            <h1>{{subject}}</h1>
+<!--            <p class="expCont">{{message}}</p>-->
+
+            <div class="p-content">{{message}}</div>
+
+        </article>
+        {% if  enable_support == 1  %}
+        {% if  recommended == 1  %}
+        <div id={{postid}} class="like liked">
+            <div class="icon"></div>
+            <div class="count">已有<span>{{support}}</span>人赞过</div>
+            
+        </div>
+        {% else %}
+        <div id={{postid}} class="like">
+            <div class="icon"></div>
+            <div class="count">已有<span>{{support}}</span>人赞过</div>
+            
+        </div>
+        {% /if %}
+        {% /if %}
+      
+    </section>
+
+    <section class="replyBox card" id="replyBox">
+
+        <div class="reply-head">相关回复</div>
+        <ul class="replyItems" id="replyItems">
+            {% if  hasComments == 0  %}
+            {% if  isLouzhuPage == 0  %}
+            <li class="clearFix noReply">
+                <article>
+                    <p>暂无回复</p>
+                </article>
+            </li>
+            {% else %}
+            <li class="clearFix noReply">
+                <article>
+                    <p>楼主很懒，什么都没留下哦~</p>
+                </article>
+            </li>
+            {% /if %}
+            {% else %}
+            {% for model in commentsArr %}
+            <li class="clearFix">
+                <div class="user-info">
+<!--                    <div class="photo"><img class="avatar" src={{model.avatar}} alt="" uid= {{model.authorid}}></div>-->
+                    <div class="photo" style="background-image:url({{model.avatar}});" uid= {{model.authorid}}></div>
+
+                    <div class="info-detail">
+                        <p class="name"><span>{{model.author}}</span>{% if model.authorid equalsString louzhuID %}<em class="tags tags-lz">楼主</em>{% /if %}</p>
+                        <p class="date">{{model.dateline}}</p>
+                    </div>
+                    <div class="floor">{{model.position}}楼</div>
+                </div>
+                <article>
+                    <div class="p-content">{{model.postmessage}}</div>
+                </article>
+                <div class="comments">
+                    <a class="btnReport" href="javascript:;"><i class="icon icon-report"></i></a>
+                    <a class="btnReply" pid={{model.pid}}><i class="icon icon-reply"></i></a>
+                    {% if  model.enable_support == 1  %}
+                    {% if  model.voteUped == 1  %}
+                    <a id={{model.pid}} class="like liked" href="javascript:;" pid={{model.pid}}><span>{{model.support}}</span><i class="icon icon-like"></i></a>
+                    {% else %}
+                    <a id={{model.pid}} class="like" href="javascript:;" pid={{model.pid}}><span>{{model.support}}</span><i class="icon icon-like"></i></a>
+                    {% /if %}
+                    {% /if %}
+                </div>
+            </li>
+            {% /for %}
+            {% /if %}
+        </ul>
+    </section>
+
+</section>
+
+<script>
+    $(function(){
+      $(window).trigger("reset");
+      });
+      $(window).bind("reset",function(){
+                     $(".replyItems").css("min-height", $(window).height() - $(".bbsBox").height() - $("h2", ".replyBox").height());
+                     });
+</script>
+
+</body>
+</html>

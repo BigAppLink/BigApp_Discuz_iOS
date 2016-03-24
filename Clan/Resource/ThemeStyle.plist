@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>YZSegMent</key>
+	<string>36,170,21</string>
+	<key>YZBBSName</key>
+	<string>BigApp</string>
+	<key>YZBaseURL</key>
+	<string>http://bbs.bigappdemo.com</string>
+	<key>YZBasePath</key>
+	<string>api/mobile/iyz_index.php</string>
+	<key>BIGAPPVERSION</key>
+	<string>9003</string>
+	<key>APPSTYLE</key>
+	<string>1</string>
+	<key>kAPP_DOWNLOAD_URL</key>
+	<string>https://itunes.apple.com/us/app/san-ti-she-qu/id997795570?l=zh&amp;ls=1&amp;mt=8</string>
+	<key>OFFLINE</key>
+	<string>0</string>
+	<key>YouZuLogin</key>
+	<string>0</string>
+	<key>ShareAppkeySina</key>
+	<string>3552514107</string>
+	<key>ShareAppkeyTecent</key>
+	<string>1104768684</string>
+	<key>ShareAppkeyWechat</key>
+	<string>wxb05003635a752c53</string>
+	<key>ShareAppSecretSina</key>
+	<string>b234a863f8cfb50e4ec7c47ca0babba9</string>
+	<key>ShareAppSecretWechat</key>
+	<string>1bf2e7110a83d2b1d2ce71c11f18ca36</string>
+	<key>ShareAppSecretTecent</key>
+	<string>QBWUohHz82fpd55h</string>
+	<key>ShareAppRedirectUriSina</key>
+	<string>https://api.weibo.com/oauth2/default.html</string>
+	<key>open_image_mode</key>
+	<string>1</string>
+</dict>
+</plist>

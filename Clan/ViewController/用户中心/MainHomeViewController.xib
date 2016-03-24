@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainHomeViewController">
+            <connections>
+                <outlet property="tableview" destination="2G7-Pv-vEg" id="gPn-Pu-uVX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="2G7-Pv-vEg" customClass="BaseTableView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="sectionIndexBackgroundColor" red="1" green="0.77280545690000002" blue="0.62438502419999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="zJZ-hV-gKr"/>
+                        <outlet property="delegate" destination="-1" id="5Mn-Jy-Ww6"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="2G7-Pv-vEg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="5D9-0F-R87">
+                    <variation key="widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="bottom" secondItem="2G7-Pv-vEg" secondAttribute="bottom" constant="150" id="NMO-aj-vag">
+                    <variation key="widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="2G7-Pv-vEg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="mET-UT-U2r">
+                    <variation key="widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="2G7-Pv-vEg" secondAttribute="trailing" constant="100" id="qAp-yc-5v8">
+                    <variation key="widthClass=compact" constant="0.0"/>
+                </constraint>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="2G7-Pv-vEg"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="5D9-0F-R87"/>
+                    <exclude reference="NMO-aj-vag"/>
+                    <exclude reference="mET-UT-U2r"/>
+                    <exclude reference="qAp-yc-5v8"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="subviews">
+                    <include reference="2G7-Pv-vEg"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="5D9-0F-R87"/>
+                    <include reference="NMO-aj-vag"/>
+                    <include reference="mET-UT-U2r"/>
+                    <include reference="qAp-yc-5v8"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="368" y="299"/>
+        </view>
+    </objects>
+</document>

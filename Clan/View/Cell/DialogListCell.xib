@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DialogListCell" rowHeight="68" id="KGk-i7-Jjw" customClass="DialogListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHf-IJ-TJG" userLabel="头像跳转" customClass="YZButton">
+                        <rect key="frame" x="15" y="12" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="RMM-8s-czj"/>
+                            <constraint firstAttribute="height" constant="45" id="fOa-ih-u0h"/>
+                        </constraints>
+                        <state key="normal" image="portrait.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuT-2g-Ros" userLabel="lbl_name">
+                        <rect key="frame" x="70" y="15" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGk-tA-BXN" userLabel="lbl_content">
+                        <rect key="frame" x="70" y="23" width="220" height="34"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YD1-KT-NTH" userLabel="iv_line">
+                        <rect key="frame" x="70" y="67" width="250" height="0.0"/>
+                        <accessibility key="accessibilityConfiguration" label=""/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="Ix1-tb-foy"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantou.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yvu-SM-VNu" userLabel="iv_indicator">
+                        <rect key="frame" x="297" y="28" width="8" height="13"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CHf-IJ-TJG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="0kN-4W-Tk4"/>
+                    <constraint firstAttribute="bottom" secondItem="eGk-tA-BXN" secondAttribute="bottom" constant="10" id="25Y-oF-BI6"/>
+                    <constraint firstItem="QuT-2g-Ros" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="2E6-cl-1dg"/>
+                    <constraint firstAttribute="centerY" secondItem="Yvu-SM-VNu" secondAttribute="centerY" constant="-0.5" id="C1C-9q-UxO"/>
+                    <constraint firstAttribute="bottom" secondItem="YD1-KT-NTH" secondAttribute="bottom" id="Fwc-Cc-mWE"/>
+                    <constraint firstItem="QuT-2g-Ros" firstAttribute="leading" secondItem="CHf-IJ-TJG" secondAttribute="trailing" constant="10" id="L7l-8S-ae8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="CHf-IJ-TJG" secondAttribute="trailing" constant="272" id="OEY-qb-MWO"/>
+                    <constraint firstItem="CHf-IJ-TJG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Ska-Jy-1Vt"/>
+                    <constraint firstAttribute="trailing" secondItem="eGk-tA-BXN" secondAttribute="trailing" constant="30" id="ZSx-D2-HRo"/>
+                    <constraint firstItem="eGk-tA-BXN" firstAttribute="top" secondItem="QuT-2g-Ros" secondAttribute="bottom" constant="8" id="aji-MG-yHh"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="CHf-IJ-TJG" secondAttribute="bottom" constant="2" id="cd8-TJ-Lro"/>
+                    <constraint firstAttribute="trailing" secondItem="Yvu-SM-VNu" secondAttribute="trailing" constant="15" id="dyZ-WV-4Ya"/>
+                    <constraint firstItem="eGk-tA-BXN" firstAttribute="leading" secondItem="CHf-IJ-TJG" secondAttribute="trailing" constant="10" id="sFb-h7-Dy5"/>
+                    <constraint firstItem="YD1-KT-NTH" firstAttribute="leading" secondItem="QuT-2g-Ros" secondAttribute="leading" id="vGJ-J7-aih"/>
+                    <constraint firstAttribute="trailing" secondItem="YD1-KT-NTH" secondAttribute="trailing" id="zti-fl-wQk"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="OEY-qb-MWO"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btn_avatar" destination="CHf-IJ-TJG" id="nVB-9R-qex"/>
+                <outlet property="iv_line" destination="YD1-KT-NTH" id="Bu8-dK-qry"/>
+                <outlet property="lbl_content" destination="eGk-tA-BXN" id="NRa-Na-ptd"/>
+                <outlet property="lbl_name" destination="QuT-2g-Ros" id="eLO-uz-gIv"/>
+            </connections>
+            <point key="canvasLocation" x="39" y="345"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="jiantou.png" width="8" height="13"/>
+        <image name="portrait.png" width="58" height="58"/>
+    </resources>
+</document>

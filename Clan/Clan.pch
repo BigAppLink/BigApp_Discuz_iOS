@@ -1,0 +1,146 @@
+//
+//  Clan.pch
+//  Clan
+//
+//  Created by chivas on 15/3/3.
+//  Copyright (c) 2015年 Youzu. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "BaseTableView.h"
+#import "YZThemeStyle.h"
+#import "BaseViewController.h"
+#import "UIButton+YZCustom.h"
+#import "UIImage+Common.h"
+#import "UIColor+expanded.h"
+#import "NSObject+Common.h"
+#import "UIBarButtonItem+Common.h"
+#import "UIViewExt.h"
+#import "Masonry.h"
+#import "UIView+Common.h"
+#import "Constants.h"
+#import "Clan_NetAPIManager.h"
+#import "AppDelegate.h"
+#import "Util.h"
+#import "UIViewController+RESideMenu.h"
+#import "RESideMenu.h"
+#import "UserModel.h"
+#import "Constants.h"
+#import "AppDisplayConfig.h"
+#import "UIFont+display.h"
+#import "YZLabel.h"
+#import "UIImageView+WebCache.h"
+#import "SVProgressHUD.h"
+#import "UIButton+WebCache.h"
+#import "FMDatabase.h"
+#import "CacheDBDao.h"
+#import "CacheManager.h"
+#import "NSNull+InternalNullExtention.h"
+#import "UserDefaultsHelper.h"
+#import "YZButton.h"
+#import "DZNavigationController.h"
+#import "TMCache.h"
+
+//define this constant if you want to use Masonry without the 'mas_' prefix
+#define MAS_SHORTHAND
+
+//define this constant if you want to enable auto-boxing for default syntax
+#define MAS_SHORTHAND_GLOBALS
+
+#import "Masonry.h"
+#endif
+//表情包路径
+#define ClanFaceImagePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)       objectAtIndex:0]stringByAppendingPathComponent:@"ClanFaceImage"]
+
+//cookie
+#define Code_CookieData      @"sessionCookies"
+#define kCookie_expired @"login_cookie_expire"
+//颜色转换
+#define UIColorFromRGB(rgbValue) \
+[UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0x00FF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0x0000FF))/255.0 \
+alpha:1.0]
+//属性
+#define ClanUserId @"userid"
+#define ClanUserName @"username"
+#define ClanPassWord @"password"
+#define ClanNickName @"nickname"
+#define ClanFormhash @"formhash"
+#define ClanImageStatus @"imageStatus"
+//当前用户的信息
+#define kKEY_CURRENT_USER @"kKEY_CURRENT_USER"
+#define kKEY_FAVO_THREADS @"kKEY_FAVO_THREADS"
+#define kKEY_FAVO_FORUMS @"kKEY_FAVO_Forum"
+#define kKEY_FAVO_ARTICLES @"kKEY_FAVO_Article"
+
+#define kKEY_NEWS_MESS_COME @"kKEY_NOTI_NEWS_MESS_COME"
+
+//调用接口传的版本号
+#define ClanVersion @"4"
+//接口的版本号
+#define kiyzversion @"4"
+
+//是否开启多图模式
+#define KOpen_image_mode @"open_image_mode"
+/** defines a weak `self` named `__weakSelf` */
+#define ESWeakSelf      ESWeak(self, __weakSelf);
+/** defines a strong `self` named `_self` from `__weakSelf` */
+#define ESStrongSelf    ESStrong(__weakSelf, _self);
+#define ESWeak(var, weakVar) __weak __typeof(&*var) weakVar = var
+#define ESStrong_DoNotCheckNil(weakVar, _var) __typeof(&*weakVar) _var = weakVar
+#define ESStrong(weakVar, _var) ESStrong_DoNotCheckNil(weakVar, _var); if (!_var) return;
+
+#define ESWeak_(var) ESWeak(var, weak_##var);
+#define ESStrong_(var) ESStrong(weak_##var, _##var);
+//ARC BLOCK
+#define WEAKSELF __weak __typeof(&*self)weakSelf = self;
+#define STRONGSELF __strong __typeof(weakSelf)strongSelf = weakSelf;
+
+//获取IOS版本
+#define UIDeviceValue [[[UIDevice currentDevice] systemVersion] floatValue]
+#define Screen_Bounds [UIScreen mainScreen].bounds
+//获取设备的物理高度
+#define kScreen_Bounds [UIScreen mainScreen].bounds
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ScreenAppHeight [[UIScreen mainScreen] applicationFrame].size.height
+#define ScreenBoundsHeight [[UIScreen mainScreen] bounds].size.height - 64
+//获取设备的物理宽度
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+//版本号
+#define kVersion_Coding [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+#define kVersionBuild_Coding [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
+
+//常用变量
+#define DebugLog(s, ...) NSLog(@"%s(%d): %@", __FUNCTION__, __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
+#define kTipAlert(_S_, ...)     [[[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:(_S_), ##__VA_ARGS__] delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil] show]
+#define kKeyWindow [UIApplication sharedApplication].keyWindow
+#define kDevice_Is_iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+//通知
+#define KEdit_TableView @"editTableView"
+#define KDone_TableView @"doneTableView"
+//搜索类型
+#define KSearchPost @"postSearch"
+#define KSearchForum @"forumSearch"
+#define KSearchUser @"userSearch"
+
+//获取帖子列表数
+#define ClanListCount @"30"
+
+#ifndef isNull
+#define isNull(a)  ( (a==nil) || ((NSNull*)a==[NSNull null]) )
+#define isNotNull(a)  (!isNull(a))
+#endif //isNull
+

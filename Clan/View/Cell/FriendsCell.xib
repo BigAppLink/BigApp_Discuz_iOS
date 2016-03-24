@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsCell" rowHeight="98" id="KGk-i7-Jjw" customClass="FriendsCell">
+            <rect key="frame" x="0.0" y="0.0" width="330" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="330" height="55.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kha-CS-mYw" userLabel="iv_avatar">
+                        <rect key="frame" x="15" y="4" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="JuA-i3-Um4"/>
+                            <constraint firstAttribute="width" constant="48" id="rfH-OV-Yp0"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGw-1Z-Oi1" userLabel="lbl_groupTitle">
+                        <rect key="frame" x="73" y="24" width="119" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LtL-Up-Bx6" userLabel="lbl_username">
+                        <rect key="frame" x="73" y="-8" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O9G-fB-Pic" userLabel="iv_line">
+                        <rect key="frame" x="73" y="54" width="307" height="1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="yov-Eu-BUo"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="kha-CS-mYw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="1nP-nQ-Q1q"/>
+                    <constraint firstAttribute="bottom" secondItem="qGw-1Z-Oi1" secondAttribute="bottom" constant="10" id="7ua-Kf-vbK"/>
+                    <constraint firstAttribute="trailing" secondItem="O9G-fB-Pic" secondAttribute="trailing" constant="-50" id="EWy-wc-tDO"/>
+                    <constraint firstItem="qGw-1Z-Oi1" firstAttribute="leading" secondItem="kha-CS-mYw" secondAttribute="trailing" constant="10" id="Ily-GO-p3t"/>
+                    <constraint firstAttribute="centerY" secondItem="kha-CS-mYw" secondAttribute="centerY" id="QNw-2f-x5o"/>
+                    <constraint firstItem="qGw-1Z-Oi1" firstAttribute="top" secondItem="LtL-Up-Bx6" secondAttribute="bottom" constant="11" id="bix-hW-tKQ"/>
+                    <constraint firstItem="LtL-Up-Bx6" firstAttribute="leading" secondItem="kha-CS-mYw" secondAttribute="trailing" constant="10" id="jrO-nT-rXG"/>
+                    <constraint firstItem="O9G-fB-Pic" firstAttribute="leading" secondItem="kha-CS-mYw" secondAttribute="trailing" constant="10" id="nyj-Yo-82d"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="qGw-1Z-Oi1" secondAttribute="trailing" constant="130" id="oOt-ca-076"/>
+                    <constraint firstAttribute="bottom" secondItem="O9G-fB-Pic" secondAttribute="bottom" id="tsI-Ap-x1J"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="iv_avatar" destination="kha-CS-mYw" id="z4t-qb-rZc"/>
+                <outlet property="iv_line" destination="O9G-fB-Pic" id="0RN-2z-ewn"/>
+                <outlet property="lbl_grouptitle" destination="qGw-1Z-Oi1" id="CdF-B0-KX1"/>
+                <outlet property="lbl_name" destination="LtL-Up-Bx6" id="c9b-yF-gsj"/>
+            </connections>
+            <point key="canvasLocation" x="248" y="250"/>
+        </tableViewCell>
+    </objects>
+</document>
